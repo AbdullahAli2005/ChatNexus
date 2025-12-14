@@ -7,11 +7,16 @@ import { connectDB } from './lib/db.js';
 
 import authRoutes from './routes/auth.route.js';
 import messageRoutes from './routes/message.route.js';
+import { app, server } from './lib/socket.js';
 
 dotenv.config();
-const app = express();
 
 const PORT = process.env.PORT;
+
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.path}`);
+    next();
+});
 
 // app.use(express.json());
 app.use(express.json({ limit: "10mb" }));
@@ -23,9 +28,9 @@ app.use(cors({
 }));
 
 app.use("/api/auth", authRoutes);
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
-app.listen(PORT, () => {
+connectDB();
+server.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);
-    connectDB();
 });
