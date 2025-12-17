@@ -1,19 +1,64 @@
+// const AuthImagePattern = ({ title, subtitle }) => {
+//     return (
+//         <div className="hidden lg:flex items-center justify-center bg-base-200 p-12">
+//             <div className="max-w-md text-center p-8 pt-16">
+//                 {/* Added: p-8 (padding), rounded-2xl, shadow-lg */}
+//                 <div className="grid grid-cols-3 gap-3 mb-8">
+//                     {[...Array(9)].map((_, i) => (
+//                         <div
+//                             key={i}
+//                             className={`aspect-square rounded-2xl bg-primary/10 ${i % 2 === 0 ? "animate-pulse" : ""
+//                                 }`}
+//                         />
+//                     ))}
+//                 </div>
+//                 <h2 className="text-2xl font-bold mb-4">{title}</h2>
+//                 <p className="text-base-content/60">{subtitle}</p>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default AuthImagePattern;
+import { MessagesSquare } from "lucide-react";
+
 const AuthImagePattern = ({ title, subtitle }) => {
     return (
-        <div className="hidden lg:flex items-center justify-center bg-base-200 p-12">
-            <div className="max-w-md text-center p-8 pt-16">
-                {/* Added: p-8 (padding), rounded-2xl, shadow-lg */}
-                <div className="grid grid-cols-3 gap-3 mb-8">
-                    {[...Array(9)].map((_, i) => (
-                        <div
-                            key={i}
-                            className={`aspect-square rounded-2xl bg-primary/10 ${i % 2 === 0 ? "animate-pulse" : ""
-                                }`}
-                        />
-                    ))}
+        <div className="hidden lg:flex items-center justify-center bg-base-200 px-16">
+            <div className="max-w-md w-full text-center">
+                {/* Chat Illustration */}
+                <div className="relative mb-12">
+                    {/* Left bubble */}
+                    <div className="w-56 p-4 mb-4 rounded-xl border border-primary/20 bg-base-100 text-left">
+                        <div className="h-3 w-32 bg-primary/20 rounded mb-2" />
+                        <div className="h-3 w-24 bg-primary/10 rounded" />
+                    </div>
+
+                    {/* Right bubble */}
+                    <div className="w-56 p-4 ml-auto mb-4 rounded-xl border border-primary/30 bg-base-100 text-left">
+                        <div className="h-3 w-28 bg-primary/20 rounded mb-2" />
+                        <div className="h-3 w-36 bg-primary/10 rounded" />
+                    </div>
+
+                    <div className="w-56 p-4 mb-4 rounded-xl border border-primary/20 bg-base-100 text-left">
+                        <div className="h-3 w-32 bg-primary/20 rounded mb-2" />
+                        <div className="h-3 w-24 bg-primary/10 rounded" />
+                    </div>
+
+                    {/* Icon anchor */}
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 size-12 rounded-md border border-primary/40 bg-base-100 flex items-center justify-center">
+                        <MessagesSquare className="w-6 h-6 text-primary stroke-[1.6]" />
+                    </div>
                 </div>
-                <h2 className="text-2xl font-bold mb-4">{title}</h2>
-                <p className="text-base-content/60">{subtitle}</p>
+
+                {/* Text */}
+                <h2 className="text-2xl font-medium tracking-wide mb-3">
+                    {title}
+                </h2>
+
+                <p className="text-base-content/60 text-sm leading-relaxed">
+                    {subtitle}
+                </p>
             </div>
         </div>
     );

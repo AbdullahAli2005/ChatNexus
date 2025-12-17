@@ -1,6 +1,5 @@
-import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
-import { Send } from "lucide-react";
+import { Sun, Moon, Send } from "lucide-react";
 
 const PREVIEW_MESSAGES = [
     { id: 1, content: "Hey! How's it going?", isSent: false },
@@ -13,34 +12,61 @@ const SettingsPage = () => {
     return (
         <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
             <div className="space-y-6">
+                {/* Theme Header */}
                 <div className="flex flex-col gap-1">
-                    <h2 className="text-lg font-semibold">Theme</h2>
-                    <p className="text-sm text-base-content/70">Choose a theme for your chat interface</p>
+                    <h2 className="text-lg font-semibold">Appearance</h2>
+                    <p className="text-sm text-base-content/70">
+                        Switch between light and dark mode
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
-                    {THEMES.map((t) => (
-                        <button
-                            key={t}
-                            className={`
-                group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
-                ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
-              `}
-                            onClick={() => setTheme(t)}
+                {/* Light / Dark Selector */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
+                    {/* Light Theme */}
+                    <button
+                        onClick={() => setTheme("light")}
+                        className={`flex items-center gap-4 p-4 rounded-xl border transition-all
+              ${theme === "light"
+                                ? "border-primary bg-base-200"
+                                : "border-base-300 hover:bg-base-200/50"}
+            `}
+                    >
+                        <div
+                            className="w-12 h-12 rounded-lg flex items-center justify-center bg-base-100"
+                            data-theme="light"
                         >
-                            <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>
-                                <div className="absolute inset-0 grid grid-cols-4 gap-px p-1">
-                                    <div className="rounded bg-primary"></div>
-                                    <div className="rounded bg-secondary"></div>
-                                    <div className="rounded bg-accent"></div>
-                                    <div className="rounded bg-neutral"></div>
-                                </div>
-                            </div>
-                            <span className="text-[11px] font-medium truncate w-full text-center">
-                                {t.charAt(0).toUpperCase() + t.slice(1)}
-                            </span>
-                        </button>
-                    ))}
+                            <Sun className="text-warning" />
+                        </div>
+                        <div className="text-left">
+                            <p className="font-medium">Light</p>
+                            <p className="text-xs text-base-content/70">
+                                Bright and clean interface
+                            </p>
+                        </div>
+                    </button>
+
+                    {/* Dark Theme */}
+                    <button
+                        onClick={() => setTheme("dark")}
+                        className={`flex items-center gap-4 p-4 rounded-xl border transition-all
+              ${theme === "dark"
+                                ? "border-primary bg-base-200"
+                                : "border-base-300 hover:bg-base-200/50"}
+            `}
+                    >
+                        <div
+                            className="w-12 h-12 rounded-lg flex items-center justify-center bg-base-100"
+                            data-theme="dark"
+                        >
+                            <Moon className="text-info" />
+                        </div>
+                        <div className="text-left">
+                            <p className="font-medium">Dark</p>
+                            <p className="text-xs text-base-content/70">
+                                Easy on the eyes at night
+                            </p>
+                        </div>
+                    </button>
                 </div>
 
                 {/* Preview Section */}
@@ -64,7 +90,7 @@ const SettingsPage = () => {
                                 </div>
 
                                 {/* Chat Messages */}
-                                <div className="p-4 space-y-4 min-h-[200px] max-h-[200px] overflow-y-auto bg-base-100">
+                                <div className="p-4 space-y-4 min-h-50 max-h-50 overflow-y-auto bg-base-100">
                                     {PREVIEW_MESSAGES.map((message) => (
                                         <div
                                             key={message.id}
