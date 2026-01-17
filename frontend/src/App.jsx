@@ -42,7 +42,6 @@ const App = () => {
     // <div data-theme={theme}>
     <div>
       <Navbar />
-      console.log("API BASE URL:", import.meta.env.VITE_API_BASE_URL);
       <Routes>
         <Route path='/' element={authUser ? <HomePage /> : <Navigate to="/login" />} />
         <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
