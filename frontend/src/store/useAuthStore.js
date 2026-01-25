@@ -143,6 +143,7 @@ export const useAuthStore = create((set, get) => ({
     },
     reconnection: true,
     transports: ["websocket", "polling"], // try websocket first
+    withCredentials: true,
 });
         socket.connect();
 
@@ -151,6 +152,9 @@ export const useAuthStore = create((set, get) => ({
         socket.on("getOnlineUsers", (userIds) => {
             set({ onlineUsers: userIds });
         });
+
+    socket.on("connect", () => console.log("Socket connected – ID:", socket.id));
+    socket.on("connect_error", (err) => console.error("Socket connect error:", err.message));
     },
 
     disconnectSocket: () => {
